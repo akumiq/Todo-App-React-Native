@@ -16,7 +16,8 @@ export default Header;
 
 const styles = EStyleSheet.create({
   container: {
-    paddingVertical: '14rem',
+    paddingVertical: '12rem',
+    paddingTop: '25rem',
     backgroundColor: 'coral',
   },
   textTitle: {

@@ -1,21 +1,16 @@
 import React, {useState} from 'react';
-import {StatusBar, View, Text, FlatList} from 'react-native';
+import {StatusBar, View, FlatList} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import Header from '../components/Header';
+import Header from '../components/atom/Header';
+import TodoList from '../components/molekul/TodoListComponent';
 
 const DashboardScreen = () => {
-  // const [data, setData] = useState([
-  //   {key: 1, title: 'Create App Pariwisata'},
-  //   {key: 2, title: 'Buy Coffee'},
-  //   {key: 3, title: 'Play Games'},
-  // ]);
-
-  const data = [
-    {title: 'Create App Pariwisata'},
-    {title: 'Buy Coffee'},
-    {title: 'Play Games'},
-  ];
+  const [todos, setTodos] = useState([
+    {key: 1, title: 'Create App Pariwisata'},
+    {key: 2, title: 'Buy Coffee'},
+    {key: 3, title: 'Play Games'},
+  ]);
 
   return (
     <View style={styles.container}>
@@ -29,14 +24,10 @@ const DashboardScreen = () => {
 
       <View style={styles.wrapperContent}>
         <FlatList
-          data={data}
+          data={todos}
           keyExtractor={(item, index) => item + index.toString()}
           renderItem={({item, index}) => {
-            return (
-              <View key={index}>
-                <Text>{item.title}</Text>
-              </View>
-            );
+            return <TodoList titleList={item.title} />;
           }}
         />
       </View>
