@@ -1,8 +1,22 @@
-import React from 'react';
-import {StatusBar, View, Text} from 'react-native';
+import React, {useState} from 'react';
+import {StatusBar, View, Text, FlatList} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
+import Header from '../components/Header';
+
 const DashboardScreen = () => {
+  // const [data, setData] = useState([
+  //   {key: 1, title: 'Create App Pariwisata'},
+  //   {key: 2, title: 'Buy Coffee'},
+  //   {key: 3, title: 'Play Games'},
+  // ]);
+
+  const data = [
+    {title: 'Create App Pariwisata'},
+    {title: 'Buy Coffee'},
+    {title: 'Play Games'},
+  ];
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -11,7 +25,21 @@ const DashboardScreen = () => {
         barStyle="dark-content"
       />
 
-      <Text style={styles.text}>Dashboard Screen</Text>
+      <Header />
+
+      <View style={styles.wrapperContent}>
+        <FlatList
+          data={data}
+          keyExtractor={(item, index) => item + index.toString()}
+          renderItem={({item, index}) => {
+            return (
+              <View key={index}>
+                <Text>{item.title}</Text>
+              </View>
+            );
+          }}
+        />
+      </View>
     </View>
   );
 };
@@ -22,10 +50,9 @@ const styles = EStyleSheet.create({
   container: {
     flex: 1,
     backgroundColor: '#ffffff',
-    justifyContent: 'center',
   },
-  text: {
-    textAlign: 'center',
-    fontSize: '18rem',
+  wrapperContent: {
+    paddingHorizontal: '20rem',
+    marginTop: '30rem',
   },
 });
