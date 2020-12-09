@@ -12,11 +12,27 @@ const DashboardScreen = () => {
     {key: 2, title: 'Buy Coffee'},
     {key: 3, title: 'Play Games'},
   ]);
+  const [newTodo, setNewTodo] = useState('');
 
   const onHandleTodos = (key) => {
     setTodos((prevState) => {
       return prevState.filter((todo) => todo.key !== key);
     });
+  };
+
+  const onChangeText = (val) => {
+    setNewTodo(val);
+  };
+
+  const onHandleAddTodo = (text) => {
+    if (newTodo !== '') {
+      setTodos((prevState) => {
+        return [{key: Math.random().toString(), title: text}, ...prevState];
+      });
+      setNewTodo('');
+    } else {
+      return null;
+    }
   };
 
   return (
@@ -29,7 +45,11 @@ const DashboardScreen = () => {
 
       <Header />
 
-      <AddTodo />
+      <AddTodo
+        onChangeText={(val) => onChangeText(val)}
+        value={newTodo}
+        onPress={() => onHandleAddTodo(newTodo)}
+      />
 
       <View style={styles.wrapperContent}>
         <Text style={styles.title}>List Todos</Text>

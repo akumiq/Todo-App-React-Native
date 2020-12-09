@@ -1,24 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TextInput, TouchableOpacity} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-const AddTodo = () => {
-  const [newTodo, setNewTodo] = useState('');
-
-  const onChangeText = (val) => {
-    setNewTodo(val);
-  };
-
+const AddTodo = (props) => {
   return (
     <View>
       <TextInput
         placeholder="new todo..."
-        onChangeText={(val) => onChangeText(val)}
-        value={newTodo}
+        onChangeText={props.onChangeText}
+        value={props.value}
         style={styles.textInput}
       />
 
-      <TouchableOpacity style={styles.btnAdd}>
+      <TouchableOpacity onPress={props.onPress} style={styles.btnAdd}>
         <Text style={styles.textAdd}>Add Todo</Text>
       </TouchableOpacity>
     </View>
@@ -46,7 +40,6 @@ const styles = EStyleSheet.create({
   },
   textAdd: {
     fontSize: '14rem',
-    // fontWeight: '100',
     color: '#ffffff',
   },
 });
