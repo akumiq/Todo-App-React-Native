@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {StatusBar, View, FlatList} from 'react-native';
+import {StatusBar, View, Text, FlatList} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
 import Header from '../components/atom/Header';
 import TodoList from '../components/molekul/TodoListComponent';
+import AddTodo from '../components/molekul/AddTodoComponent';
 
 const DashboardScreen = () => {
   const [todos, setTodos] = useState([
@@ -28,7 +29,11 @@ const DashboardScreen = () => {
 
       <Header />
 
+      <AddTodo />
+
       <View style={styles.wrapperContent}>
+        <Text style={styles.title}>List Todos</Text>
+
         <FlatList
           data={todos}
           keyExtractor={(item, index) => item + index.toString()}
@@ -55,6 +60,11 @@ const styles = EStyleSheet.create({
   },
   wrapperContent: {
     paddingHorizontal: '20rem',
-    marginTop: '30rem',
+    marginTop: '20rem',
+  },
+  title: {
+    fontSize: '16rem',
+    fontWeight: 'bold',
+    marginBottom: '10rem',
   },
 });
