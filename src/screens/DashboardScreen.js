@@ -12,6 +12,12 @@ const DashboardScreen = () => {
     {key: 3, title: 'Play Games'},
   ]);
 
+  const onHandleTodos = (key) => {
+    setTodos((prevState) => {
+      return prevState.filter((todo) => todo.key !== key);
+    });
+  };
+
   return (
     <View style={styles.container}>
       <StatusBar
@@ -27,7 +33,12 @@ const DashboardScreen = () => {
           data={todos}
           keyExtractor={(item, index) => item + index.toString()}
           renderItem={({item, index}) => {
-            return <TodoList titleList={item.title} />;
+            return (
+              <TodoList
+                onPress={() => onHandleTodos(item.key)}
+                titleList={item.title}
+              />
+            );
           }}
         />
       </View>
