@@ -7,16 +7,13 @@ import TodoList from '../components/molekul/TodoListComponent';
 import AddTodo from '../components/molekul/AddTodoComponent';
 
 const DashboardScreen = () => {
-  const [todos, setTodos] = useState([
-    {key: 1, title: 'Create App Pariwisata'},
-    {key: 2, title: 'Buy Coffee'},
-    {key: 3, title: 'Play Games'},
-  ]);
+  const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState('');
+  const dataNull = [{title: 'Maaf, Todo Anda Tidak Ada'}];
 
-  const onHandleTodos = (key) => {
+  const onDeleteTodos = (key) => {
     setTodos((prevState) => {
-      return prevState.filter((todo) => todo.key !== key);
+      return prevState.filter((item) => item.key !== key);
     });
   };
 
@@ -55,12 +52,12 @@ const DashboardScreen = () => {
         <Text style={styles.title}>List Todos</Text>
 
         <FlatList
-          data={todos}
+          data={todos && todos.length > 0 ? todos : dataNull}
           keyExtractor={(item, index) => item + index.toString()}
-          renderItem={({item, index}) => {
+          renderItem={({item}) => {
             return (
               <TodoList
-                onPress={() => onHandleTodos(item.key)}
+                onPress={() => onDeleteTodos(item.key)}
                 titleList={item.title}
               />
             );
