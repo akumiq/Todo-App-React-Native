@@ -16,7 +16,7 @@ const SpalshScreen = ({navigation}) => {
       <StatusBar
         translucent
         backgroundColor="#949599"
-        barStyle="dark-content"
+        barStyle="light-content"
       />
 
       <Image source={imgLogo} style={styles.img} />

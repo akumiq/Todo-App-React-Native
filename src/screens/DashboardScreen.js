@@ -36,8 +36,8 @@ const DashboardScreen = () => {
     <View style={styles.container}>
       <StatusBar
         translucent
-        backgroundColor="#ffffff"
-        barStyle="dark-content"
+        backgroundColor="#949599"
+        barStyle="light-content"
       />
 
       <Header />

@@ -35,7 +35,7 @@ const styles = EStyleSheet.create({
     marginHorizontal: '20rem',
     paddingVertical: '10rem',
     alignItems: 'center',
-    backgroundColor: 'coral',
+    backgroundColor: '#949599',
     borderRadius: '10rem',
   },
   textAdd: {
