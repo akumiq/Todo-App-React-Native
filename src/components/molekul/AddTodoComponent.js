@@ -12,7 +12,7 @@ const AddTodo = (props) => {
         style={styles.textInput}
       />
 
-      <TouchableOpacity onPress={props.onPress} style={styles.btnAdd}>
+      <TouchableOpacity onPress={props.onHandleSubmit} style={styles.btnAdd}>
         <Text style={styles.textAdd}>Add Todo</Text>
       </TouchableOpacity>
     </View>

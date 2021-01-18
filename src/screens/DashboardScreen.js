@@ -8,25 +8,28 @@ import AddTodo from '../components/molekul/AddTodoComponent';
 
 const DashboardScreen = () => {
   const [todos, setTodos] = useState([]);
-  const [newTodo, setNewTodo] = useState('');
+  const [newTodo, setNewTodo] = useState({
+    key: '',
+    title: '',
+  });
   const dataNull = [{title: 'Maaf, Todo Anda Tidak Ada'}];
 
-  const onDeleteTodos = (key) => {
-    setTodos((prevState) => {
-      return prevState.filter((item) => item.key !== key);
+  const onChangeText = (val) => {
+    setNewTodo({
+      key: Math.random().toString(),
+      title: val,
     });
   };
 
-  const onChangeText = (val) => {
-    setNewTodo(val);
-  };
-
-  const onHandleAddTodo = (text) => {
-    if (newTodo !== '') {
+  const onHandleSubmit = (text) => {
+    if (newTodo.key !== '' && newTodo.title !== '') {
       setTodos((prevState) => {
         return [{key: Math.random().toString(), title: text}, ...prevState];
       });
-      setNewTodo('');
+      setNewTodo({
+        key: '',
+        title: '',
+      });
     } else {
       return null;
     }
@@ -44,8 +47,8 @@ const DashboardScreen = () => {
 
       <AddTodo
         onChangeText={(val) => onChangeText(val)}
-        value={newTodo}
-        onPress={() => onHandleAddTodo(newTodo)}
+        value={newTodo.title}
+        onHandleSubmit={() => onHandleSubmit(newTodo.title)}
       />
 
       <View style={styles.wrapperContent}>
@@ -55,12 +58,7 @@ const DashboardScreen = () => {
           data={todos && todos.length > 0 ? todos : dataNull}
           keyExtractor={(item, index) => item + index.toString()}
           renderItem={({item}) => {
-            return (
-              <TodoList
-                onPress={() => onDeleteTodos(item.key)}
-                titleList={item.title}
-              />
-            );
+            return <TodoList titleList={item.title} />;
           }}
         />
       </View>

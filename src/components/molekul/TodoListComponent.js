@@ -10,11 +10,11 @@ const TodoList = (props) => {
       <Text style={styles.textList}>{props.titleList}</Text>
 
       <View style={styles.wrapperIcon}>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={props.onHandleEdit}>
           <IconEdit name="edit" size={22} color="#949599" />
         </TouchableOpacity>
 
-        <TouchableOpacity onPress={props.onPress} style={styles.icon}>
+        <TouchableOpacity onPress={props.onHandleDelete} style={styles.icon}>
           <IconTrash name="trash" size={18} color="#949599" />
         </TouchableOpacity>
       </View>
