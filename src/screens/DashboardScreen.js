@@ -9,30 +9,34 @@ import AddTodo from '../components/molekul/AddTodoComponent';
 const DashboardScreen = () => {
   const [todos, setTodos] = useState([]);
   const [newTodo, setNewTodo] = useState({
-    key: '',
+    id: '',
     title: '',
   });
   const dataNull = [{title: 'Maaf, Todo Anda Tidak Ada'}];
 
   const onChangeText = (val) => {
     setNewTodo({
-      key: Math.random().toString(),
+      id: Math.random().toString(),
       title: val,
     });
   };
 
   const onHandleSubmit = (text) => {
-    if (newTodo.key !== '' && newTodo.title !== '') {
+    if (newTodo.id !== '' && newTodo.title !== '') {
       setTodos((prevState) => {
-        return [{key: Math.random().toString(), title: text}, ...prevState];
+        return [{id: Math.random().toString(), title: text}, ...prevState];
       });
       setNewTodo({
-        key: '',
+        id: '',
         title: '',
       });
     } else {
       return null;
     }
+  };
+
+  const onHandleDelete = (key) => {
+    setTodos(todos.filter((item) => item.id !== key));
   };
 
   return (
@@ -58,7 +62,12 @@ const DashboardScreen = () => {
           data={todos && todos.length > 0 ? todos : dataNull}
           keyExtractor={(item, index) => item + index.toString()}
           renderItem={({item}) => {
-            return <TodoList titleList={item.title} />;
+            return (
+              <TodoList
+                onHandleDelete={() => onHandleDelete(item.id)}
+                titleList={item.title}
+              />
+            );
           }}
         />
       </View>
