@@ -2,12 +2,12 @@ import React, {useEffect} from 'react';
 import {View, StatusBar, Image} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
 
-import imgLogo from '../assets/mq.png';
+import imgLogo from '../../assets/mq.png';
 
 const SpalshScreen = ({navigation}) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.navigate('DashboardScreen');
+      navigation.navigate('HomeScreen');
     }, 3000);
   }, [navigation]);
 

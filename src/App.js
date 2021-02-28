@@ -1,12 +1,10 @@
 import React, {useEffect} from 'react';
 import {Dimensions, BackHandler} from 'react-native';
 import EStyleSheet from 'react-native-extended-stylesheet';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator, TransitionPresets} from '@react-navigation/stack';
 
-import SplashScreen from '../src/screens/SplashScreen';
-import DashboardScreen from '../src/screens/DashboardScreen';
+import {SplashScreen, HomeScreen, AddTodoScreen} from '../src/screens';
 
 const Stack = createStackNavigator();
 
@@ -35,7 +33,9 @@ const App = () => {
         }}>
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
 
-        <Stack.Screen name="DashboardScreen" component={DashboardScreen} />
+        <Stack.Screen name="HomeScreen" component={HomeScreen} />
+
+        <Stack.Screen name="AddTodoScreen" component={AddTodoScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
